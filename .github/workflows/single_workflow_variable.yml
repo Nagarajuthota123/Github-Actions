@@ -12,5 +12,5 @@ jobs:
       - name: "Print the app name and working environment and user name"
         env:
           user_name: "Nagaraju Thota"
-        run: echo "The app name is ${{ env.app_name }} and working on ${{env.Environment_name}}, the user name is ${{ env.user_name }}"
+        run: echo "The app name is $env.app_name and working on $env.Environment_name, the user name is $env.user_name"
 
