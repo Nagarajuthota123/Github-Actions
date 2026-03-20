@@ -1,0 +1,16 @@
+name: testing the single workflow variables
+on:
+  workflow_dispatch:
+env:
+  app_name:: "My-App"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      Environment_name: "Production"
+    steps:
+      - name: "Print the app name and working environment and user name"
+        env:
+          user_name: "Nagaraju Thota"
+        run: echo "The app name is ${{ env.app_name }} and working on ${{env.Environment_name}}, the user name is ${{ env.user_name }}"
+
