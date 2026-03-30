@@ -1,9 +1,11 @@
 name: Hello world
 on: workflow_dispatch
 jobs:
-  hello:
+  multiple_shell_commands:
     runs-on: ubuntu-latest
-    steps:
-      - name: Say hello
-        run: echo "Hello world!"
+  steps:
+    - name: Run multiple commands
+      run: |
+        echo "Hello world!"
+        echo "This is a multiple command step."
 
