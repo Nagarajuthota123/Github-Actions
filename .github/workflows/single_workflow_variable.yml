@@ -1,8 +1,9 @@
-name: Multiple jobs in a single workflow
+name: Sequential jobs in a single workflow
 on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: building the application
         run: echo "Hello from build job!"
@@ -12,8 +13,10 @@ jobs:
     steps:
       - name: testing the application
         run: echo "Hello from test job!"
+
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: deploying the application
         run: echo "Hello from deploy job!"
