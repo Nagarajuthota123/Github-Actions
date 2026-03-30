@@ -1,10 +1,19 @@
-name: Multiple shell commands
+name: Multiple jobs in a single workflow
 on: workflow_dispatch
 jobs:
-  multiple_shell_commands:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Run multiple commands
-        run: |
-          echo "Hello world!"
-          echo "This is a multiple command step."
+      - name: building the application
+        run: echo "Hello from build job!"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing the application
+        run: echo "Hello from test job!"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploying the application
+        run: echo "Hello from deploy job!"
