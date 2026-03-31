@@ -1,9 +1,12 @@
 name: Sequential jobs in a single workflow
-on: push
+on:
+  pull_request:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: building the application
-        run: echo "Hello from build job!"
+        run: echo "Hello from build job! and i am using the pull_request"
 
