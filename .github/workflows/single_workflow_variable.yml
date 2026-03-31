@@ -3,7 +3,6 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: building the application
         run: echo "Hello from build job!"
