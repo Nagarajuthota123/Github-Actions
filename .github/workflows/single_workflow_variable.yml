@@ -1,12 +1,13 @@
 name: Sequential jobs in a single workflow
 on:
-  pull_request:
+  push:
     branches:
       - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: building the application
-        run: echo "Hello from build job! and i am using the pull_request"
-
+      - name: display the variable
+        run: echo "Hello my name is ${{vars.MY_NAME}}"
+      - name: display the secret
+        run: echo "Hello my password is ${{secrets.MY_PSSWD}}"
