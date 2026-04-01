@@ -3,9 +3,9 @@ on: workflow_dispatch
 env: 
   APP_ENV: workflow-level
 jobs:
-  env-variable:
-  env: 
-    APP_ENV: job-level
+  env-variable-demo:
+    env: 
+      APP_ENV: job-level
     runs-on: ubuntu-latest
     steps:
       - name: knowing the env variable defining on stage
