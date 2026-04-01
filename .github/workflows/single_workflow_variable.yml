@@ -8,12 +8,16 @@ on:
         default: dev
         type: choice
         options:
-        - dev
-        - test
-        - prod
+          - dev
+          - test
+          - prod
+      ARTIFACT_ID:
+        description: choose the artifact version
+        required: true
+      
 jobs:
   input-demo:
     runs-on: ubuntu-latest
     steps:
       - name: deploying the application uses the inputs
-        run: echo " the application deploying on ${{inputs.environment}}"
+        run: echo " the application deploying on ${{inputs.environment}} and the artifact version${{inputs. ARTIFACT_ID}}"
