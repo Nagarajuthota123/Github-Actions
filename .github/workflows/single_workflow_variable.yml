@@ -1,12 +1,17 @@
 name: demo of environment variables
 on: workflow_dispatch
 env: 
-  APP_ENV: workflow-level
+  WORKFLOW_ENV: workflow-level
 jobs:
-  env-variable-demo:
+  env-variable:
     env: 
-      APP_ENV: job-level
+      JOB_ENV: job-level
     runs-on: ubuntu-latest
     steps:
       - name: knowing the env variable defining on stage
-        run: echo "the variable define at $APP_ENV"
+        env: 
+          STEP_ENV: Step-level
+        run: |
+          echo "the variable define at $WORKFLOW_ENV"
+          echo "the variable define at $JOB_ENV"
+          echo "the variable define at $STEP_ENV"
