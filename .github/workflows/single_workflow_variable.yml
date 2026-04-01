@@ -16,4 +16,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploying the application uses the inputs
-      - run: echo " the application deploying on ${{inputs.environment}}"
+        run: echo " the application deploying on ${{inputs.environment}}"
