@@ -1,17 +1,19 @@
-name: demo of environment variables
-on: workflow_dispatch
-env: 
-  WORKFLOW_ENV: workflow-level
+name: demo for inputs
+on: 
+  workflow_dispatch:
+    inputs:
+      environment: 
+        description: choose the environment to deploy 
+        required: true 
+        default: dev
+        type: choice
+        options:
+        - dev
+        - test
+        - prod
 jobs:
-  env-variable:
-    env: 
-      JOB_ENV: job-level
+  input-demo:
     runs-on: ubuntu-latest
     steps:
-      - name: knowing the env variable defining on stage
-        env: 
-          STEP_ENV: Step-level
-        run: |
-          echo "the variable define at $WORKFLOW_ENV"
-          echo "the variable define at $JOB_ENV"
-          echo "the variable define at $STEP_ENV"
+      - name: deploying the application uses the inputs
+      - run: echo " the application deploying on ${{inputs.environment}}"
