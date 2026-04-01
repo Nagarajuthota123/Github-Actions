@@ -7,3 +7,5 @@ jobs:
     steps:
       - name: using the context variables
         run: echo "the user of the repository ${{github.actor}} and the repository name ${{github.repository}}"
+      - name: printing all the context variables
+        run: echo "${{toJson(github)}}"
