@@ -1,13 +1,10 @@
-name: Sequential jobs in a single workflow
-on:
-  push:
-    branches:
-      - main
+name: demo of environment variables
+on: workflow_dispatch
+env: 
+  APP_ENV: workflow-level
 jobs:
-  build:
+  env-variable:
     runs-on: ubuntu-latest
     steps:
-      - name: display the variable
-        run: echo "Hello my name is ${{vars.MY_NAME}}"
-      - name: display the secret
-        run: echo "Hello my password is ${{secrets.MY_PSSWD}}"
+      - name: knowing the env variable defining on stage
+        run: echo "the variable define at $APP_ENV"
