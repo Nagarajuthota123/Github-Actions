@@ -4,9 +4,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{steps.step-1.outputs.version}}
     steps:
       - name: Initialising  the outputs
         id: step-1
-        run: echo "version=0.0.0.5" >> $GITHUB_OUTPUT 
+        run: echo "version=0.0.0.5" >> GITHUB_OUTPUT 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps: 
       - name: calling the outputs
-        run: echo "the version of the app is ${{ steps.step-1.outputs.version }}"
+        run: echo "the version of the application deployed is ${{ needs.build.outputs.version }}"
+
