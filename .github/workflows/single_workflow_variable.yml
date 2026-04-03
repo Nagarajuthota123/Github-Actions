@@ -1,13 +1,40 @@
-name: Sequential jobs in a single workflow
-on:
+name: demo for the if statement
+on: 
   push:
-    branches:
-      - main
+    - main
+    - dev
+    - feature
 jobs:
-  Deploying:
+  deploy-feature:
+    if: startsWith(github.ref_name, 'feature') && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - name: display the variable
-        run: echo "Hello my name is ${{vars.MY_NAME}}"
-      - name: display the secret
-        run: echo "Hello my password is ${{secrets.MY_PSSWD}}"
+      - name: code deploy to feature
+        run: echo "code quality analysis done at feature"
+
+  deploy-dev:
+    if: github.ref_name == 'dev' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy at dev branch
+        run: echo "code quality analysis done at dev branch"
+  deploy-production:
+    if: github.ref_name == 'main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy at main branch
+        run: echo "code quality analysis done at production"
+  success-notify:
+    needs: ['deploy-feature', 'deploy-dev', 'deploy-production']
+    if: always() && !failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: success notification
+        run: echo " success mail send to the team"
+  failure-notify:
+    needs: ['deploy-feature', 'deploy-dev', 'deploy-production']
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: failure notification
+        run: echo " failure mail send to the team"
