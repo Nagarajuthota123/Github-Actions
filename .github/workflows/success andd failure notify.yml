@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: code deploy to feature
         run: echo "code quality analysis done at feature"
+        exit 1
 
   deploy-dev:
     if: github.ref_name == 'dev' && github.event_name == 'push'
