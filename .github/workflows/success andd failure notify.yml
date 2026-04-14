@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: code deploy to feature
-        run: 
+        run: | 
           echo "code quality analysis done at feature"
           exit 1
 
