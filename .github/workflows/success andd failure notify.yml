@@ -1,12 +1,13 @@
 name: demo for the if statement
-on: 
+on:
   push:
-    - main
-    - dev
-    - feature
+    branches:
+      - main
+      - dev
+      - feature
 jobs:
   deploy-feature:
-    if: startsWith(github.ref_name, 'feature') && github.event_name == 'push'
+    if: startsWith(github.ref_name,'feature') && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: code deploy to feature
