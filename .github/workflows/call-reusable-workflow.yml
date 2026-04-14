@@ -1,0 +1,12 @@
+name: calling the reusable workflow
+
+on:
+  push:
+    branches:
+        - naga
+
+jobs:
+  calling-the-reusable-workflow:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      name: "Adilakshmi"
